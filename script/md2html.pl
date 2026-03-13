@@ -23,8 +23,6 @@ use App::md2html;
 
 const our $NO_FILENAME => '-';
 
-#field $parser;
-
 field $infile : reader = [];
 field $outfile = [];
 

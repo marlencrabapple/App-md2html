@@ -15,8 +15,8 @@ use IPC::Nosh::IO;
 
 our $modroot  = path(abs_path);
 our @input    = ( path("$modroot/script") );
-our $outdir   = path("./bin");
-our $outfn    = "%s";
+our $outdir   = path('./bin');
+our $outfn    = '%s';
 our $locallib = path("$modroot/local");
 our $verbose  = 1;
 our $debug    = $verbose;
@@ -42,12 +42,11 @@ our $patharg = sub ( $arg, %opt ) {
             dmsg( $arg, $dest );
         }
     }
-    $arg;
 };
 
 our %clidest = (
     modroot  => \$modroot,
-    input    => \@input,
+    input    => [],
     outdir   => \$outdir,
     outfn    => \$outfn,
     locallib => \$locallib,
@@ -58,41 +57,31 @@ our %clidest = (
 GetOptions(
     \%clidest,
     'input|file|infile|infname|script=s{,}',
+    => sub {
+        $patharg->( shift, dest => \@input );
+    },
     'outdir|fatpack-out=s',
-'outfn|out-fname|outfilename|out-filename|fnfmt|fmtfn|fmt-filename|fmt-outputfn=s',
+    'outfn|outfname|out-filename|fnfmt|fmtfn|fmt-filename|fmt-outputfn=s',
     'modroot|module-root|module-dir=s',
     'locallib=s{,}',
     'verbose+',
     'debug',
-    '<>' => sub ($in) {
-        push @input, $patharg->($in);
-    }
+    '<>' => sub ($in) { $patharg->( $in, dest => \@input ) }
 );
 
-dmsg(
-    my $cliopt = {
-        map {
-            my $ref = ref $clidest{$_};
-            ( $_ => ( $ref eq "SCALAR" ? $clidest{$_}->$* : $clidest{$_} ) )
-        } ( keys %clidest )
-    }
-);
+my $cliopt_deref = {
+    map {
+        my $ref = ref $clidest{$_};
+        ( $_ => ( $ref eq 'SCALAR' ? $clidest{$_}->$* : $clidest{$_} ) )
+    } ( keys %clidest )
+};
 
-sub cmd ( $cmd, %opt ) {
-
-    run( $cmd, %opt );
-}
+# dmsg($_cliopt);
+dmsg $cliopt_deref, \%clidest, \@input;
 
 sub fatpack {
     $CWD = $modroot;
-    run(
-        [qw(carton install)],
-        on => {
-            line => sub ($line) {
-                info $line;
-            }
-        }
-    );
+    run( [qw(carton install)], out => [] );
 
     #run( [qw(carton vendor)] );
     #run( [qw(carmel)] );
@@ -103,6 +92,7 @@ sub fatpack {
 
     foreach my $in ( map { $_->is_dir ? ( $_->children ) : $_ } @input ) {
 
+        #fatpack($in->children) if $in->is_dir;
         my @fatlines;
         my $fatstr = "";
         my @cmd    = ( qw(fatpack pack), $in );
@@ -118,8 +108,6 @@ sub fatpack {
             ( $outfn || '%s.fat' ),
             ( s/^(.+)(?:\.pl)?$/$1/rg =~ $in->basename )
         );
-
-        dmsg $in, $outfn, $fatout;
 
         if ( my ($ext) = $in->basename =~ /\.(pl)$/i ) {
             $fatout .= ".$ext";
