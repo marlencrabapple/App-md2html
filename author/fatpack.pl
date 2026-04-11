@@ -5,6 +5,7 @@ use v5.40;
 
 use lib 'lib';
 
+use Fcntl qw'S_IXUSR S_IXGRP S_IXOTH S_IRUSR S_IRGRP S_IROTH';
 use Cwd 'abs_path';
 use File::chdir;
 use Path::Tiny;
@@ -76,15 +77,9 @@ my $cliopt_deref = {
     } ( keys %clidest )
 };
 
-# dmsg($_cliopt);
-dmsg $cliopt_deref, \%clidest, \@input;
-
 sub fatpack {
     $CWD = $modroot;
-    run( [qw(carton install)], out => [] );
-
-    #run( [qw(carton vendor)] );
-    #run( [qw(carmel)] );
+    run( [qw(carton install)] );
 
     $ENV{PERL5LIB} = "$locallib:$modroot/lib";
 
@@ -93,29 +88,26 @@ sub fatpack {
     foreach my $in ( map { $_->is_dir ? ( $_->children ) : $_ } @input ) {
 
         #fatpack($in->children) if $in->is_dir;
-        my @fatlines;
-        my $fatstr = "";
-        my @cmd    = ( qw(fatpack pack), $in );
+        my $fatline = [];
+        my $fatstr  = "";
+        my @cmd     = ( qw(fatpack pack), $in );
 
         binmode STDERR, ":encoding(UTF-8)";
         info( "Running " . join " ", @cmd );
 
-        run( \@cmd, out => \@fatlines, autoflush => 1, autochomp => 1 );
+        my $run = run( \@cmd, autoflush => 1, autochomp => 1 );
+        dmsg($run);
 
-        $fatstr = join "\n", @fatlines;
+        $fatstr = join "\n", $run->out->@*;
 
-        my $fatout = sprintf(
-            ( $outfn || '%s.fat' ),
-            ( s/^(.+)(?:\.pl)?$/$1/rg =~ $in->basename )
-        );
+        my $fatout = $in->basename;
+        $fatout = path("$outdir/$fatout")->spew_utf8($fatstr);
 
-        if ( my ($ext) = $in->basename =~ /\.(pl)$/i ) {
-            $fatout .= ".$ext";
-        }
+        # S_IXOTH  (00001)  execute/search by others
+        $fatout->chmod(
+            S_IRUSR | S_IRGRP | S_IROTH | S_IXUSR | S_IXGRP | S_IXOTH );
 
-        path("$outdir/$fatout")->spew_utf8($fatstr);
-
-        success("Written to $fatout");
+        success("Written to: $fatout");
     }
 }
 
