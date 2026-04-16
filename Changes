@@ -1,6 +1,8 @@
 Revision history for App-md2html
 
 {{$NEXT}}
+
+0.01.1  2026-04-16 06:59:37 PDT
         - Add MD2HTML_EMBEDDED/MD2HTML_FRAGMENT environment variables and
         --embedded|fragment CLI options for embedding output in existing HTML
         documents, for example the cgit about-filter output
