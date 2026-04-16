@@ -1,8 +1,5 @@
 #!/usr/bin/env perl
 
-# read from std in for every element in @ARGV
-# if stdin is empty open $ARGV[n] as file
-# if ARGV is empty read stdin until eof
 use Object::Pad ':experimental(:all)';
 
 package md2html::cli;
@@ -17,30 +14,26 @@ use Getopt::Long qw(GetOptionsFromArray :config no_ignore_case);
 use Syntax::Keyword::Defer;
 use Const::Fast;
 use Path::Tiny;
-use IPC::Nosh::IO;
-
+use IPC::Nosh::Common;
+use List::Util qw'any first';
 use App::md2html;
 
 const our $NO_FILENAME => '-';
 
-field $infile : reader = [];
-field $outfile = [];
+field $infile  : reader : param(in)  = [];
+field $outfile : reader : param(out) = [];
+field $cliopt  : reader;
 
-field $cliopt :
-  reader { { infile => $infile, charset => 'UTF-8', $outfile => $outfile } };
-
-field $parser : reader {
-    md2html->new(
-        encoding_in  => $$cliopt{charset},
-        encoding_out => $$cliopt{outcharset}
-    )
-};
-
+field $parser : reader;
 field $done;
 
-method run {
-    dmsg $infile;
+ADJUSTPARAMS($param) {
+    $cliopt = $param;
+    $parser = App::md2html->new(%$cliopt);
+    dmsg $self
+}
 
+method run ( $infile, $outfile ) {
     push @$infile, $STDIN unless scalar @$infile;
 
     foreach my $file (@$infile) {
@@ -74,23 +67,48 @@ method run {
 }
 
 method cli : common ( $argv = \@ARGV ) {
-
-    my $self = $class->new;
+    my %cliopt = ( in => [], out => [] );
 
     GetOptionsFromArray(
         $argv,
-        $self->cliopt,
-        'outfile=s{,}',
-        'charset|encoding|inencoding=s',
-        'outcharset|outencoding|outencode=s',
-        'stylesheet=s',
-        'passthrough=s',    # TODO: passthrough based on file ext
-        '<>' => sub ($file) {
-            push $self->infile->@*, $file;
+        \%cliopt,
+
+        'outfile=s{,}'
+        ,    # If this is empty should we enable --embedded|no-header|fragment
+
+        'encoding_in|charset|charset-in|encoding|inencoding=s',
+        'encoding_out|outcharset|outencoding|outencode|charset-out=s',
+
+        # 'css|stylesheeet:s',
+
+        # 'toc:s',
+
+        'htmldoc|full-html|html-page!',
+
+        #'doctype:s',
+        #'header:s',
+        'embedded|fragment',
+
+        # 'html-ver=s',
+        # 'xhtml',
+        # 'html5',
+
+        #'minify:s',
+        'minify!',
+
+        #'passthrough=s',    # TODO: passthrough based on file ext
+        'debug+',
+        'verbose+',
+        '<>' => sub ($infile) {
+            push $cliopt{in}->@*, $infile;
         }
     );
 
-    $self->run;
+    my $in  = delete $cliopt{in};
+    my $out = delete $cliopt{out};
+
+    my $md2html = $class->new(%cliopt);
+    $md2html->run( $in, $out );
 }
 
 md2html::cli->cli( \@ARGV )

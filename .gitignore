@@ -6,3 +6,6 @@
 MYMETA.*
 !META.json
 /.prove
+/fatlib
+/bin
+/local
