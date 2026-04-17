@@ -79,11 +79,11 @@ method cli : common ( $argv = \@ARGV ) {
         'encoding_in|charset|charset-in|encoding|inencoding=s',
         'encoding_out|outcharset|outencoding|outencode|charset-out=s',
 
-        # 'css|stylesheeet:s',
+        'css|stylesheeet:s',
 
-        # 'toc:s',
+        'toc:s',
 
-        'htmldoc|full-html|html-page!',
+        'htmldoc|html-document|full-html|html-page!',
 
         #'doctype:s',
         #'header:s',
