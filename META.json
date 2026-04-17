@@ -38,7 +38,7 @@
       "runtime" : {
          "requires" : {
             "Const::Fast" : "0",
-            "HTML::Entities" : "0",
+            "HTML::Escape" : "0",
             "IPC::Nosh" : "0",
             "Object::Pad" : "0",
             "Path::Tiny" : "0",

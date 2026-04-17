@@ -12,7 +12,7 @@ our $VERSION = '0.01.1';
 use List::Util 'first';
 use Encode qw(encode decode);
 use Text::Markdown::Hoedown;
-use HTML::Entities qw(encode_entities decode_entities);
+use HTML::Escape;    #qw(encode_entities decode_entities);
 use Const::Fast;
 use Syntax::Keyword::Dynamically;
 use IPC::Nosh::Common;
