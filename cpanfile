@@ -1,9 +1,13 @@
 requires 'perl', 'v5.40';
 
 requires 'Syntax::Keyword::Defer';
+requires 'Syntax::Keyword::Dynamically';
 requires 'IPC::Nosh';
 requires 'Path::Tiny';
 requires 'Const::Fast';
+requires 'Text::Markdown::Hoedown';
+requires 'Object::Pad';
+requires 'HTML::Entities';
 
 on test => sub {
     requires 'Test::More', '0.96';

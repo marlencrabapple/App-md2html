@@ -112,8 +112,7 @@ App::md2html - Hoedown based Markdown to HTML converter
   use App::md2html;
 
   my $mdstr = q'# Simple Markdown Doc
-
-
+  ...
   ';
 
   # OOP interface

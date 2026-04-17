@@ -109,6 +109,15 @@ method cli : common ( $argv = \@ARGV ) {
 
     my $md2html = $class->new(%cliopt);
     $md2html->run( $in, $out );
+
+    $md2html;
 }
 
-md2html::cli->cli( \@ARGV )
+package md2html;
+
+use v5.40;
+
+use IPC::Nosh::Common;
+
+our $cli = md2html::cli->cli( \@ARGV );
+dmsg $cli;

@@ -1,5 +1,5 @@
 {
-   "abstract" : "Blah blah blah",
+   "abstract" : "Hoedown based Markdown to HTML converter",
    "author" : [
       "Ian P Bradley <crabapp@hikki.tech>"
    ],
@@ -38,9 +38,13 @@
       "runtime" : {
          "requires" : {
             "Const::Fast" : "0",
+            "HTML::Entities" : "0",
             "IPC::Nosh" : "0",
+            "Object::Pad" : "0",
             "Path::Tiny" : "0",
             "Syntax::Keyword::Defer" : "0",
+            "Syntax::Keyword::Dynamically" : "0",
+            "Text::Markdown::Hoedown" : "0",
             "perl" : "v5.40.0"
          }
       },
@@ -50,7 +54,7 @@
          }
       }
    },
-   "release_status" : "stable",
+   "release_status" : "testing",
    "version" : "0.01.1",
    "x_contributors" : [
       "Ian P Bradley <ian.bradley@studiocrabapple.com>"
