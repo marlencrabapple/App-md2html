@@ -496,16 +496,16 @@ DISTRIBUTIONS
       perl 5.006
       strict 0
       warnings 0
-  Object-Pad-0.823
-    pathname: P/PE/PEVANS/Object-Pad-0.823.tar.gz
+  Object-Pad-0.825
+    pathname: P/PE/PEVANS/Object-Pad-0.825.tar.gz
     provides:
-      Object::Pad 0.823
-      Object::Pad::ExtensionBuilder 0.823
-      Object::Pad::MOP::Class 0.823
-      Object::Pad::MOP::Field 0.823
-      Object::Pad::MOP::FieldAttr 0.823
-      Object::Pad::MOP::Method 0.823
-      Object::Pad::MetaFunctions 0.823
+      Object::Pad 0.825
+      Object::Pad::ExtensionBuilder 0.825
+      Object::Pad::MOP::Class 0.825
+      Object::Pad::MOP::Field 0.825
+      Object::Pad::MOP::FieldAttr 0.825
+      Object::Pad::MOP::Method 0.825
+      Object::Pad::MetaFunctions 0.825
     requirements:
       ExtUtils::CBuilder 0
       File::ShareDir 1.00
@@ -514,7 +514,7 @@ DISTRIBUTIONS
       XS::Parse::Keyword::Builder 0.48
       XS::Parse::Sublike 0.35
       XS::Parse::Sublike::Builder 0.35
-      perl 5.018
+      perl 5.022
   PadWalker-2.5
     pathname: R/RO/ROBIN/PadWalker-2.5.tar.gz
     provides:
