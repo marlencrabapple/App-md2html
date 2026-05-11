@@ -1,6 +1,8 @@
 Revision history for App-md2html
 
 {{$NEXT}}
+
+0.01.2  2026-05-10 19:31:29 PDT
         - Switch HTML::Entities out with HTML::Escape
         - md2html usage, App::md2html pod, regenerate README.md
         - author/fatpack.pl: add default out path to MANIFEST.SKIP

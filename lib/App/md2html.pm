@@ -7,7 +7,7 @@ class App::md2html;
 use utf8;
 use v5.40;
 
-our $VERSION = '0.01.1';
+our $VERSION = '0.01.2';
 
 use List::Util 'first';
 use Encode qw(encode decode);
