@@ -14,7 +14,7 @@ use Getopt::Long qw(GetOptionsFromArray :config no_ignore_case);
 use Syntax::Keyword::Defer;
 use Const::Fast;
 use Path::Tiny;
-use IPC::Nosh::Common;
+use IO::Handle::Common;
 use List::Util qw'any first';
 use App::md2html;
 

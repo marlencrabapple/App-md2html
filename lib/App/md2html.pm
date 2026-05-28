@@ -15,7 +15,7 @@ use Text::Markdown::Hoedown;
 use HTML::Escape;    #qw(encode_entities decode_entities);
 use Const::Fast;
 use Syntax::Keyword::Dynamically;
-use IPC::Nosh::Common;
+use IO::Handle::Common;
 
 const our $CHARSET_DEFAULT => 'UTF-8';
 const our %HTMLOPT_DEFAULT => (

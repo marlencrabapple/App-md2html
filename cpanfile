@@ -2,7 +2,7 @@ requires 'perl', 'v5.40';
 
 requires 'Syntax::Keyword::Defer';
 requires 'Syntax::Keyword::Dynamically';
-requires 'IPC::Nosh';
+requires 'IO::Handle::Common';
 requires 'Path::Tiny';
 requires 'Const::Fast';
 requires 'Text::Markdown::Hoedown';
