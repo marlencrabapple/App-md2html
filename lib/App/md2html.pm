@@ -30,8 +30,6 @@ field $doctype : param : accessor { $HTMLOPT_DEFAULT{doctype} };
 
 field $htmlopt : param : accessor = { %HTMLOPT_DEFAULT, doctype => $doctype };
 
-#ield $encodeopt :param : accessor = { in => $App:: out => $encoding_in}
-
 field $encoding_in  : param : accessor { $App::md2html::CHARSET_DEFAULT };
 field $encoding_out : param : accessor { $encoding_in };
 
@@ -55,8 +53,6 @@ method to_html ( $mdstr, %opt ) {
         dynamically $$htmlopt{$k} = $v if $v;
     }
 
-    dmsg $self, \%opt, $htmlopt, $embedded;
-
     my $mdstr = decode( $encoding_in, $mdstr );
 
     my $out = markdown(
@@ -64,8 +60,6 @@ method to_html ( $mdstr, %opt ) {
         html_options => $html_options,
         extensions   => $extensions
     );
-
-    dmsg $out;
 
     unless ($embedded) {
         my $head = join "\n", $htmlopt->{head}->@*;
