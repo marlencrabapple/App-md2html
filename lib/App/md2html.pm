@@ -16,12 +16,21 @@ use HTML::Escape;    #qw(encode_entities decode_entities);
 use Const::Fast;
 use Syntax::Keyword::Dynamically;
 use IO::Handle::Common;
+use MIME::Types;
 
+const our $MIME         => MIME::Types->new;
+const our $MIMETYPE_STR => 'text/markdown';
+const our @MIME_EXT     => ( $MIME->type($MIMETYPE_STR)->extensions );
+
+const our $MIME_EXT_PTN    => join '|', map { quotemeta $_ } @MIME_EXT;
+const our $FN_EXT_RE       => qr/()\.($MIME_EXT_PTN)$/i;
 const our $CHARSET_DEFAULT => 'UTF-8';
 const our %HTMLOPT_DEFAULT => (
     doctype => '<!DOCTYPE html>',
     head    => [ '<head>', qq!<meta charset="$CHARSET_DEFAULT">!, '</head>' ]
 );
+
+# field $mime_fext { \@App::md2html::FILEEXT };
 
 field $embedded : param : accessor //=
   first { $_ } @ENV{ ( map { "MD2HTML_$_" } qw'EMBEDDED FRAGMENT' ) };
@@ -45,7 +54,7 @@ ADJUST {
     dmsg $self
 }
 
-method to_html ( $mdstr, %opt ) {
+method convert ( $mdstr, %opt ) {
 
     dynamically $embedded = $opt{embedded} if $opt{embedded};
 

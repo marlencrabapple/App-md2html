@@ -24,19 +24,18 @@ field $infile  : reader : param(in)  = [];
 field $outfile : reader : param(out) = [];
 field $cliopt  : reader;
 
-field $parser : reader;
-field $done;
+field $md2html : reader;
 
 ADJUSTPARAMS($param) {
-    $cliopt = $param;
-    $parser = App::md2html->new(%$cliopt);
+    $cliopt  = $param;
+    $md2html = App::md2html->new(%$cliopt);
     dmsg $self
 }
 
 method run ( $infile, $outfile ) {
     push @$infile, $STDIN unless scalar @$infile;
 
-    foreach my $file (@$infile) {
+    foreach my $file ( grep { $_ =~ // } @$infile ) {
         state $i = 0;
         defer { $i++ };
 
@@ -54,7 +53,7 @@ method run ( $infile, $outfile ) {
             $instr = $file->slurp_raw;
         }
 
-        my $body = $self->parser->to_html($instr);
+        my $body = $self->convert($instr);
 
         # TODO: create output file from mask string
         if ( my $outfile = $$outfile[$i] ) {
@@ -89,12 +88,11 @@ method cli : common ( $argv = \@ARGV ) {
         #'header:s',
         'embedded|fragment',
 
-        # 'html-ver=s',
-        # 'xhtml',
-        # 'html5',
-
-        #'minify:s',
-        'minify!',
+        'html-ver=s',
+        'xhtml',
+        'html5',
+        'minify=s',
+        'no-minify',
 
         #'passthrough=s',    # TODO: passthrough based on file ext
         'debug+',
@@ -117,7 +115,7 @@ package md2html;
 
 use v5.40;
 
-use IPC::Nosh::Common;
+use IO::Handle::Common;
 
 our $cli = md2html::cli->cli( \@ARGV );
 dmsg $cli;
