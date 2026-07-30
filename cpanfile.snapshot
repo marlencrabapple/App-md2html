@@ -6,12 +6,6 @@ DISTRIBUTIONS
       Class::Accessor::Lite 0.08
     requirements:
       ExtUtils::MakeMaker 6.36
-  Class-Exporter-0.03
-    pathname: S/SP/SPLICE/Class-Exporter-0.03.tar.gz
-    provides:
-      Class::Exporter 0.03
-    requirements:
-      ExtUtils::MakeMaker 0
   Class-Inspector-1.36
     pathname: P/PL/PLICEASE/Class-Inspector-1.36.tar.gz
     provides:
@@ -237,7 +231,6 @@ DISTRIBUTIONS
       IO::Handle::Common 0.01
       IO::Handle::Common::Handle undef
     requirements:
-      Class::Exporter 0
       Const::Fast 0
       Data::Dumper::Names 0
       Devel::StackTrace::WithLexicals 0

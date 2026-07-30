@@ -23,6 +23,19 @@
          "xt"
       ]
    },
+   "optional_features" : {
+      "md2html.pl" : {
+         "description" : "md2html.pl",
+         "prereqs" : {
+            "runtime" : {
+               "recommends" : {
+                  "App::md2html" : "0",
+                  "Text::Markdown::Hoedown" : "0"
+               }
+            }
+         }
+      }
+   },
    "prereqs" : {
       "configure" : {
          "requires" : {
