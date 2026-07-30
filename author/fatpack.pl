@@ -64,7 +64,7 @@ GetOptions(
     => sub {
         $patharg->( shift, dest => \@input );
     },
-    'outdir|fatpack-out=s',
+    'outdir|outdest|fatdest|fatpack-out=s',
     'outfn|outfname|out-filename|fnfmt|fmtfn|fmt-filename|fmt-outputfn=s',
     'modroot|module-root|module-dir=s',
     'locallib=s{,}',
