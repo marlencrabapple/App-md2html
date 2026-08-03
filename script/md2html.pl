@@ -53,7 +53,7 @@ method run ( $infile, $outfile ) {
             $instr = $file->slurp_raw;
         }
 
-        my $body = $self->convert($instr);
+        my $body = $md2html->convert($instr);
 
         # TODO: create output file from mask string
         if ( my $outfile = $$outfile[$i] ) {
