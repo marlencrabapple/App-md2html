@@ -9,6 +9,7 @@ requires 'Const::Fast';
 requires 'Text::Markdown::Hoedown';
 requires 'Object::Pad';
 requires 'HTML::Escape';
+requires 'MIME::Types';
 
 on test => sub {
     requires 'Test::More', '0.96';

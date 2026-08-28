@@ -6,6 +6,12 @@ DISTRIBUTIONS
       Class::Accessor::Lite 0.08
     requirements:
       ExtUtils::MakeMaker 6.36
+  Class-Exporter-0.03
+    pathname: S/SP/SPLICE/Class-Exporter-0.03.tar.gz
+    provides:
+      Class::Exporter 0.03
+    requirements:
+      ExtUtils::MakeMaker 0
   Class-Inspector-1.36
     pathname: P/PL/PLICEASE/Class-Inspector-1.36.tar.gz
     provides:
@@ -85,6 +91,12 @@ DISTRIBUTIONS
       ExtUtils::MakeMaker 6.59
       PadWalker 1.98
       perl 5.008001
+  Devel-Trace-0.12
+    pathname: M/MJ/MJD/Devel-Trace-0.12.tar.gz
+    provides:
+      Devel::Trace 0.12
+    requirements:
+      ExtUtils::MakeMaker 0
   ExtUtils-CChecker-0.12
     pathname: P/PE/PEVANS/ExtUtils-CChecker-0.12.tar.gz
     provides:
@@ -229,18 +241,33 @@ DISTRIBUTIONS
     pathname: C/CR/CRABAPP/IO-Handle-Common-0.01-TRIAL.tar.gz
     provides:
       IO::Handle::Common 0.01
+      IO::Handle::Common::Base undef
       IO::Handle::Common::Handle undef
     requirements:
+      Class::Exporter 0
       Const::Fast 0
       Data::Dumper::Names 0
       Devel::StackTrace::WithLexicals 0
+      Devel::Trace 0
       FileHandle 0
       IO::Handle 0
       List::Util 0
       Module::Build::Tiny 0.034
+      Object::Pad 0
       PadWalker 0
       Path::Tiny 0
       perl v5.40.0
+  MIME-Types-2.30
+    pathname: M/MA/MARKOV/MIME-Types-2.30.tar.gz
+    provides:
+      MIME::Type 2.30
+      MIME::Types 2.30
+      MojoX::MIME::Types 2.30
+    requirements:
+      ExtUtils::MakeMaker 0
+      File::Basename 0
+      File::Spec 0
+      List::Util 0
   Module-Build-0.4234
     pathname: L/LE/LEONT/Module-Build-0.4234.tar.gz
     provides:
