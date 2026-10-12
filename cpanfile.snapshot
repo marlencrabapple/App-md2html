@@ -56,14 +56,14 @@ DISTRIBUTIONS
       PadWalker 0.13
       Scalar::Util 0
       Test::More 0
-  Data-OptList-0.114
-    pathname: R/RJ/RJBS/Data-OptList-0.114.tar.gz
+  Data-OptList-0.115
+    pathname: R/RJ/RJBS/Data-OptList-0.115.tar.gz
     provides:
-      Data::OptList 0.114
+      Data::OptList 0.115
     requirements:
       ExtUtils::MakeMaker 6.78
       List::Util 0
-      Params::Util 0
+      Params::SomeUtil 0
       Sub::Install 0.921
       perl 5.012
       strict 0
@@ -187,16 +187,16 @@ DISTRIBUTIONS
       perl 5.006
       strict 0
       warnings 0
-  Future-0.52
-    pathname: P/PE/PEVANS/Future-0.52.tar.gz
+  Future-0.53
+    pathname: P/PE/PEVANS/Future-0.53.tar.gz
     provides:
-      Future 0.52
-      Future::Exception 0.52
-      Future::Mutex 0.52
-      Future::PP 0.52
-      Future::Utils 0.52
-      Test::Future 0.52
-      Test::Future::Deferred 0.52
+      Future 0.53
+      Future::Exception 0.53
+      Future::Mutex 0.53
+      Future::PP 0.53
+      Future::Utils 0.53
+      Test::Future 0.53
+      Test::Future::Deferred 0.53
     requirements:
       Carp 1.25
       List::Util 1.29
@@ -237,10 +237,10 @@ DISTRIBUTIONS
       XSLoader 0
       parent 0
       perl 5.008008
-  IO-Handle-Common-0.01-TRIAL
-    pathname: C/CR/CRABAPP/IO-Handle-Common-0.01-TRIAL.tar.gz
+  IO-Handle-Common-0.01_3-TRIAL
+    pathname: C/CR/CRABAPP/IO-Handle-Common-0.01_3-TRIAL.tar.gz
     provides:
-      IO::Handle::Common 0.01
+      IO::Handle::Common 0.01_3
       IO::Handle::Common::Base undef
       IO::Handle::Common::Handle undef
     requirements:
@@ -349,10 +349,10 @@ DISTRIBUTIONS
       Test::Requires 0
       parent 0
       perl 5.008001
-  Module-Build-Tiny-0.052
-    pathname: L/LE/LEONT/Module-Build-Tiny-0.052.tar.gz
+  Module-Build-Tiny-0.053
+    pathname: L/LE/LEONT/Module-Build-Tiny-0.053.tar.gz
     provides:
-      Module::Build::Tiny 0.052
+      Module::Build::Tiny 0.053
     requirements:
       CPAN::Meta 0
       DynaLoader 0
@@ -400,22 +400,17 @@ DISTRIBUTIONS
     requirements:
       ExtUtils::MakeMaker 0
       perl 5.008001
-  Params-Util-1.102
-    pathname: R/RE/REHSACK/Params-Util-1.102.tar.gz
+  Params-SomeUtil-1.12
+    pathname: P/PL/PLICEASE/Params-SomeUtil-1.12.tar.gz
     provides:
-      Params::Util 1.102
-      Params::Util::PP 1.102
+      Params::SomeUtil 1.12
     requirements:
-      Carp 0
-      ExtUtils::MakeMaker 0
-      File::Basename 0
-      File::Copy 0
-      File::Path 0
-      File::Spec 0
-      IPC::Cmd 0
+      ExtUtils::CBuilder 0.27
+      ExtUtils::MakeMaker 6.52
+      File::Spec 0.80
       Scalar::Util 1.18
-      XSLoader 0.22
-      parent 0
+      Test::More 0.87
+      perl 5.005030
   Path-Tiny-0.150
     pathname: D/DA/DAGOLDEN/Path-Tiny-0.150.tar.gz
     provides:
@@ -515,13 +510,25 @@ DISTRIBUTIONS
       Module::Build 0.4005
       parent 0
       perl 5.008005
-  XS-Parse-Keyword-0.49
-    pathname: P/PE/PEVANS/XS-Parse-Keyword-0.49.tar.gz
+  Unicode-UTF8-0.75
+    pathname: C/CH/CHANSEN/Unicode-UTF8-0.75.tar.gz
     provides:
-      XS::Parse::Infix 0.49
-      XS::Parse::Infix::Builder 0.49
-      XS::Parse::Keyword 0.49
-      XS::Parse::Keyword::Builder 0.49
+      Unicode::UTF8 0.75
+    requirements:
+      Carp 0
+      Devel::PPPort 0
+      Exporter 0
+      ExtUtils::CBuilder 0
+      ExtUtils::MakeMaker 0
+      XSLoader 0
+      perl 5.008001
+  XS-Parse-Keyword-0.51
+    pathname: P/PE/PEVANS/XS-Parse-Keyword-0.51.tar.gz
+    provides:
+      XS::Parse::Infix 0.51
+      XS::Parse::Infix::Builder 0.51
+      XS::Parse::Keyword 0.51
+      XS::Parse::Keyword::Builder 0.51
     requirements:
       ExtUtils::CBuilder 0
       ExtUtils::CChecker 0.11
@@ -529,12 +536,12 @@ DISTRIBUTIONS
       File::ShareDir 1.00
       Module::Build 0.4004
       perl 5.014
-  XS-Parse-Sublike-0.41
-    pathname: P/PE/PEVANS/XS-Parse-Sublike-0.41.tar.gz
+  XS-Parse-Sublike-0.42
+    pathname: P/PE/PEVANS/XS-Parse-Sublike-0.42.tar.gz
     provides:
-      Sublike::Extended 0.41
-      XS::Parse::Sublike 0.41
-      XS::Parse::Sublike::Builder 0.41
+      Sublike::Extended 0.42
+      XS::Parse::Sublike 0.42
+      XS::Parse::Sublike::Builder 0.42
     requirements:
       ExtUtils::CBuilder 0
       File::ShareDir 1.00

@@ -6,8 +6,6 @@ package md2html::cli;
 
 class md2html::cli;
 
-use lib 'lib';
-
 use v5.40;
 
 use Getopt::Long qw(GetOptionsFromArray :config no_ignore_case);
@@ -17,28 +15,28 @@ use Path::Tiny;
 use IO::Handle::Common;
 use List::Util qw'any first';
 use App::md2html;
+use builtin;
 
 const our $NO_FILENAME => '-';
 
 field $infile  : reader : param(in)  = [];
 field $outfile : reader : param(out) = [];
 field $cliopt  : reader;
-
 field $md2html : reader;
 
-ADJUSTPARAMS($param) {
-    $cliopt  = $param;
-    $md2html = App::md2html->new(%$cliopt);
+ADJUST : params (%param) {
+    $cliopt  = \%param;
+    $md2html = App::md2html->new(
+        map { ( ( $_ =~ s/-/_/rg ) => $$cliopt{$_} ) }
+          keys %$cliopt
+    );
     dmsg $self
-}
+  }
 
-method run ( $infile, $outfile ) {
+  method run ( $infile, $outfile ) {
     push @$infile, $STDIN unless scalar @$infile;
 
-    foreach my $file ( grep { $_ =~ // } @$infile ) {
-        state $i = 0;
-        defer { $i++ };
-
+    foreach my ( $i, $file ) ( builtin::indexed @$infile ) {
         my $instr;
 
         if ( !-t STDIN ) {
@@ -72,11 +70,11 @@ method cli : common ( $argv = \@ARGV ) {
         $argv,
         \%cliopt,
 
-        'outfile=s{,}'
-        ,    # If this is empty should we enable --embedded|no-header|fragment
+        'infile=s@',
+        'outfile=s@',
 
-        'encoding_in|charset|charset-in|encoding|inencoding=s',
-        'encoding_out|outcharset|outencoding|outencode|charset-out=s',
+        'encoding-in|charset|charset-in|encoding|inencoding=s',
+        'encoding-out|outcharset|outencoding|outencode|charset-out=s',
 
         'css|stylesheeet:s',
 

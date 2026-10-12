@@ -37,15 +37,27 @@
       },
       "runtime" : {
          "requires" : {
-            "Const::Fast" : "0",
-            "Getopt::Long" : "0",
-            "HTML::Escape" : "0",
-            "IO::Handle::Common" : "0",
-            "Object::Pad" : "0",
-            "Path::Tiny" : "0",
-            "Syntax::Keyword::Defer" : "0",
-            "Syntax::Keyword::Dynamically" : "0",
-            "Text::Markdown::Hoedown" : "0",
+            "Class::Exporter" : "0.03",
+            "Const::Fast" : "0.014",
+            "Data::Dumper::Names" : "0.03",
+            "Devel::StackTrace" : "2.05",
+            "Devel::StackTrace::Frame" : "2.05",
+            "Devel::StackTrace::WithLexicals" : "2.01",
+            "HTML::Escape" : "1.11",
+            "IO::Handle::Common" : "0.01_3",
+            "MIME::Type" : "2.30",
+            "MIME::Types" : "2.30",
+            "Object::Pad" : "0.825",
+            "Object::Pad::MOP::Class" : "0.825",
+            "PadWalker" : "2.5",
+            "Path::Tiny" : "0.150",
+            "Sub::Exporter::Progressive" : "0.001013",
+            "Syntax::Keyword::Defer" : "0.11",
+            "Syntax::Keyword::Dynamically" : "0.14",
+            "Text::Markdown::Hoedown" : "1.03",
+            "Unicode::UTF8" : "0.75",
+            "XS::Parse::Keyword" : "0.49",
+            "XS::Parse::Sublike" : "0.41",
             "perl" : "v5.40.0"
          }
       },
@@ -56,7 +68,7 @@
       }
    },
    "release_status" : "testing",
-   "version" : "0.01.2",
+   "version" : "0.01_1",
    "x_contributors" : [
       "Ian P Bradley <ian.bradley@studiocrabapple.com>"
    ],

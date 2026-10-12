@@ -7,7 +7,7 @@ class App::md2html;
 use utf8;
 use v5.40;
 
-our $VERSION = '0.01.2';
+our $VERSION = '0.01_1';
 
 use List::Util 'first';
 use Encode qw(encode decode);
@@ -17,6 +17,7 @@ use Const::Fast;
 use Syntax::Keyword::Dynamically;
 use IO::Handle::Common;
 use MIME::Types;
+use Unicode::UTF8 qw'decode_utf8 encode_utf8';
 
 const our $MIME         => MIME::Types->new;
 const our $MIMETYPE_STR => 'text/markdown';
@@ -62,10 +63,17 @@ method convert ( $mdstr, %opt ) {
         dynamically $$htmlopt{$k} = $v if $v;
     }
 
-    my $mdstr = decode( $encoding_in, $mdstr );
+    my $mdstr =
+      $encoding_in eq 'UTF-8'
+      ? decode_utf8($mdstr)
+      : decode( $encoding_in, $mdstr );
 
     my $out = markdown(
-        encode( $encoding_out, $mdstr ),
+        (
+            $encoding_out eq 'UTF-8'
+            ? encode_utf8($mdstr)
+            : encode( $encoding_out, $mdstr )
+        ),
         html_options => $html_options,
         extensions   => $extensions
     );
