@@ -1,7 +1,7 @@
 requires 'perl', 'v5.40';
 
-requires 'IO::Handle::Common', '0.01_3',
-  dist => 'CRABAPP/IO-Handle-Common-0.01_3-TRIAL.tar.gz';
+requires 'IO::Handle::Common', '0.01_08',
+  dist => 'CRABAPP/IO-Handle-Common-0.01_08-TRIAL.tar.gz';
 
 requires 'Object::Pad',                     '0.825';
 requires 'XS::Parse::Sublike',              '0.41';
